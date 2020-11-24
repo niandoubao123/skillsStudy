@@ -1,0 +1,1371 @@
+禅道    http://172.18.2.37:8008/zentao/bug-view-4393.html
+哨兵禅道  http://172.18.2.37:8008/zentao/bug-view-6102.html
+zhengyp
+xlw123456
+.page-issue-coupon .plateInput .item
+
+BD4eY~
+
+路通云停API     http://172.18.2.23:7001/web/#/11?page_id=927
+哨兵    http://172.18.2.23:7001/web/#/23?page_id=2264
+给你分配了个api管理的账号：
+zhengyp
+123456
+
+
+物业 18310588029  123456  18610298852  18376720261  保安13888888889   
+经销商 13107710001  15778319081   15947712260   17781022312   18026987248
+厂家 18677118623  123456  
+移动端管理：17878777422 123456 ； 18610298852	123456  ； 13517582765  123456  
+移动端商家发券：19811223344 123456   13014977481 123456
+
+https://manufactor.platformcenter.net/login.html
+
+https://m.platformcenter.net/login.html
+
+https://p.platformcenter.net/login.html
+
+http://172.18.2.23:7001/web/#/11?page_id=927
+
+日志http://172.18.2.37:8008/ibos/?r=user/default/login
+
+securityPaymentStatement   保安交账
+channelStatistics   车道统计
+
+
+昨天：new Date(new Date(new Date(new Date(new Date()).getTime() - 1000 * 60 * 60 * 24).format('yyyy/MM/dd 00:00:00'))).format('yyyy/MM/dd')
+一个月以前：new Date(new Date(new Date(new Date(new Date()).getTime() - 1000 * 60 * 60 * 24 * 32).format('yyyy/MM/dd 00:00:00')).getTime()-1000*60*60*10).format('yyyy/MM/dd')
+
+//选择昨天
+this.GETMoneyAccountsList.input.value.st = new Date(new Date().getTime()-1000*60*60*24).format('yyyy/MM/dd 00:00:00')
+this.GETMoneyAccountsList.input.value.et = new Date(new Date().getTime()-1000*60*60*24).format('yyyy/MM/dd 23:59:59')
+//选择七天内
+this.GETMoneyAccountsList.input.value.st = new Date(new Date().getTime()-1000*60*60*24*6).format('yyyy/MM/dd 00:00:00')
+this.GETMoneyAccountsList.input.value.et = new Date().format('yyyy/MM/dd 23:59:59')
+
+2020.6.8
+周一：其他车组/添加车组，以及组内车辆添加选择车牌颜色，部分页面的成功提示显示问题，其他车组tab显示，新增其他车组删除功能，组内车辆修改以及删除，解决苹果手机样式显示不清问题。
+
+周二：布了两个交班交账和车道统计两个页面的大体列表结构，并定义两个列表请求接口；为账目明细列表入参和回参添加字段；更改路通云停页面左侧导航，可以右键打开新页面。
+
+周三：完善交班交账页面以及其四个明细列表，定义四个明细请求接口。
+
+周四：实现交班交账列表交账、修改备注，明细页面切换列表、车牌查询；抽出明细/具体信息为一个组件，可复用；和后端联调数据，准备提测
+
+周五：解决车道统计数据请求小问题，修复商家发券bug4768，并实现停车场设置二维码弹框显示，点击进入插件
+
+明细类目查询，再次输入车牌查询可以确定是当前条目进行搜索（无问题）   分页还要测试，明细车牌查询也要侧（无问题） 
+
+笔记：传时间段不要把首尾时间设置成一个时间点，
+         有的时间必传
+         cmd从api.js复制过来，不要自己改
+         ！！！！改变页码，页面事改变了，但是改变页码要干嘛？改变页码要触发查询事件getTableData()，不然白改，也不查询，以后自测分页和查询
+         //分页符
+         handleCurrentChange (){
+               this.methods('getTableData')
+         },
+         传递页码！！！！！有的操作需要重置页码或者重新赋值，记得传递！！！！！！这个操作一般在获取数据传参之前，查询就传页码为“1”
+         if (pIdx) {
+            this.GETMoneyAccountsList.input.value.pIdx = 1
+         }
+         使用模糊搜索下拉  控件el-autocomplete
+        //获取数组
+        let accNameArr=[]
+        this.GETMoneyAccountsList.output.value.rows.forEach((item)=>{
+            accNameArr.push({"value":item.accName})
+        })
+        // 去重
+        let accNameArr2 = []
+        let accNameArr1 = accNameArr.filter((val,index,self)=>{
+            accNameArr.forEach((item,i)=>{
+                accNameArr2.push(item.value)
+            })
+            return accNameArr2.indexOf(val.value)===index
+        })
+        //搜索匹配
+        accNameArr2 = queryString ? accNameArr1.filter(item=>{
+            return (item.value.indexOf(queryString) != -1)
+        }) : accNameArr1;
+        cb(accNameArr2)
+        console.log(accNameArr2)
+
+
+测试问题：刚进去，随便选，但凡换一个物业，就会变卡（中度），切换次数增多，更加卡，删除操作删除第一个字很卡，删掉第一个字就好了
+
+
+
+vue.js取消事件冒泡
+
+<div @click.stop="doSomething($event)">vue取消事件冒泡</div>
+vue.js阻止默认事件
+
+<div @click.prevent="doSomething($event)">vue阻止默认事件</div>
+
+浮动出现问题，p标签内部使用浮动出现塌陷问题，受影响的标签使用clear:both;解决问题！！！！！
+
+js字符串转数字   parseInt("1234blue");  //returns  1234
+
+打开新页面：
+toPage(name,mchId){
+      this.methods('toPage',name,mchId)
+},
+
+toPage (name,mchId) {
+      ...
+    this.$root.updateMchId(mchId)
+    this.$root.turnPageInNewTab({
+      path: name,
+    })
+}
+//跳转页面修改目标页面的物业或者停车场
+...
+if(mchId){
+   this.$root.toPageUpdateParkingId(this.GETArea.input.value.parkingId,this.GETArea.input.parkingName)
+}else{
+   this.$root.toPageUpdateMchId(this.mchId)
+}
+...
+
+//当有些数据传递无误，但是页面没事展示出的时候就要考虑是否又未触发的函数或者没有来得及触发的函数，测试，然后手动触发它，写一个方法，调用父级的函数
+this.$parent.update()
+
+pc的confirm
+event:如下
+let sure = await this.methods('confirm', '是否确定导出符合筛选条件的内容?')
+if(!sure)return
+methods:如下
+ async confirm (msg) {
+    let sure = true
+    await new Promise(resolve => {
+      this.$confirm(msg, '提示', {
+        cancelButtonClass: 'cancel',
+        confirmButtonClass: 'confirm',
+        callback (action) {
+          sure = action === 'confirm'
+          resolve()
+        }
+      })
+    })
+    return sure
+}
+
+2020.6.15
+周一：今天修改商家发券车牌颜色显示bug，以及优化pc搜索操作(回车搜索)，停车场设置出入场二维码样式
+
+周二：再修改商户H5发券页面样式，修复停车场设置二维码img第一次点击不能绘制出的问题，以及二维码下方跳转页面选中停车场和商户，联调车道查询和交班交账明细的分页功能，准备上线
+
+周三：交班交账值守人下拉搜索，停车订单添加搜索条件和入参，帮助修复物业搜索卡顿，以及上线的反馈的一些新需求和问题
+
+周四：零散ui优化，停车订单和其他车组增加导出功能。
+
+周五：和后端联调停车订单和其他车组导出功能，并为其他车组增加导入功能（暂未联调）
+
+暂存：
+    "ChargeStandardThree": "每天分2段且拆分计费",
+    "ChargeStandardSix": "纯首时段/其他时段计费",
+    "Charging24Hours": "标准24小时计费方案",
+    "ChargeStandardOne": "每日分4段计费",   
+    "ChargeStandardTwo": "每日分2段计费",
+    "ChargeStandardFive": "按工作日/非工作日计费",
+    "ChargeStandardFour": "按天/按小时进行计费",
+
+2020.6.22
+周一：联调其他车组导入功能。
+
+周二：零散ui优化集中帖全部完成（无争议部分），以及商户管理可依据创建时间排序，联调完善自定义车组的导出
+
+周三：w12内容--通过查询在场单绑优惠券（开关开启时），今日完成--pc端新增商家发放电子券记录页，以及商家H5给车主发券重构
+
+
+图片移动：
+//测试移动
+  imgMoveT(){
+    let x = this.$refs.imgM.style.marginTop||0
+    if(this.$refs.imgM.style.marginTop=='0px'){
+      this.$refs.toTop.style.display = 'none';
+      this.$message.success("不能再向上了")
+      return
+    }
+    this.$refs.imgM.style.marginTop = parseInt(x)-10+'px'
+  },
+  imgMoveB(){
+    let x = this.$refs.imgM.style.marginTop||0
+    if(this.$refs.imgM.style.marginTop=='50px'){
+      this.$refs.toBot.style.display = 'none';
+      this.$message.success("不能再向下了")
+      return
+    }
+    this.$refs.imgM.style.marginTop = parseInt(x)+10+'px'
+  },
+  imgMoveL(){
+    let x = this.$refs.imgM.style.marginRight||0
+    if(this.$refs.imgM.style.marginRight=='50px'){
+      this.$refs.toLeft.style.display = 'none';
+      this.$refs.toRight.style.display = 'block';
+      this.$message.success("不能再向左了")
+      return
+    }
+    this.$refs.imgM.style.marginRight = parseInt(x)+10+'px'
+  },
+  imgMoveR(){
+    let x = this.$refs.imgM.style.marginRight||0
+    if(this.$refs.imgM.style.marginRight=='0px'){
+      this.$refs.toRight.style.display = 'none';
+      this.$refs.toLeft.style.display = 'block';
+      this.$message.success("不能再向右了")
+      return
+    }
+    this.$refs.imgM.style.marginRight = parseInt(x)-10+'px'
+  }
+
+周日：继续w12内容，通过查询在场单绑优惠券（开关开启时），联调pc发电子券记录页面以及商家H5页面数据，着手车主H5页面
+
+周一：车主H5绑定优惠券，联调。
+
+周二：车主端联调在场车绑定优惠券，二维码发券、券包发券、纸质优惠券扫码绑定车牌等，完善样式
+
+周三：在场车绑定优惠券增加发券前检测，修改pc，优惠券，修改车主端样式，修复一些bug问题
+
+周四：pc端二次识别页面优化，修复非车牌过滤点击查看图片bug，优化代码
+
+周五：上午请假体检，下午优化二次识别页面，识别线可拖拽
+
+ 
+1：本周工作内容
+    周日：继续w12内容，通过查询在场单绑优惠券（开关开启时），联调pc发电子券记录页面以及商家H5页面数据，着手车主H5页面
+
+    周一：车主H5绑定优惠券，联调。
+
+    周二：车主端联调在场车绑定优惠券，二维码发券、券包发券、纸质优惠券扫码绑定车牌等，完善样式
+
+    周三：在场车绑定优惠券增加发券前检测，修改pc，优惠券，修改车主端样式，修复一些bug问题
+
+    周四：pc端二次识别页面优化，修复非车牌过滤点击查看图片bug，优化代码
+
+    周五：上午请假体检，下午优化二次识别页面，识别线可拖拽
+2：培训计划执行情况
+     培训计划有序进行，情况正常
+3：问题与建议
+     暂无
+4：成就感
+     上班第八周，这周参与路通云停w12部分内容的开发，包括pc端、商家优惠券端，车主端等，学到了更多东西，也有一些成长
+笔记：<div style="color:black;font-weight:bold;float:right;">{{duration(i.timeLen,'秒')}}</div>   在common中的函数，可以将秒转为天-时-分
+转换时间为天-时-分
+var relData = res.data
+              relData.rows.forEach(function(item){
+                // console.log(event)
+                var relTime = $event.duration(item.timeLen,'秒')
+                item.timeLen = relTime
+})
+
+控制数据：
+ActualMoney:{
+        get(){
+          return this.parent.value.actualMoney
+        },
+        set(val){
+          console.log(val)
+          if(val>100000){
+            Vue.prototype.$message.warning('fdsfsdfff')
+          }
+        }
+      }
+
+model中可用提示：
+Vue.prototype.$message.warning('金额太大啦，最多可输入100000哦')
+
+获取数组中特定元素重复次数
+console.log(this.GETChannelListSecondRecognition.output.betweenChannel.filter((item)=>item.channelType==='inarea').length)
+
+解决浏览器元素连续点击变蓝   user-select: none;
+
+JavaScript中childNodes和children的区别 
+
+商户 dialog标题加粗？不佳、
+dialog圆角？44
+车主li加粗？可以
+商户li高度120？可以
+“在场车辆，选择在场车”标题上下间距
+尚存问题：遮罩层滚动  移除节点移除两次已解决
+
+考虑的要多一些，细心一些，但凡有改动，一定要全面的测试是否出现影响
+
+  
+  //上划线拖拽事件
+  draggableTop(e,index){
+    console.log(e.offsetY)
+    console.log(e)
+    if(e.offsetY<0){
+      if(this.GETChannelListSecondRecognition.output.value.secondRecognitions[index].top>0){
+        setTimeout(()=>{
+          this.GETChannelListSecondRecognition.output.value.secondRecognitions[index].top = 0
+        },10)
+      }else{
+        this.GETChannelListSecondRecognition.output.value.secondRecognitions[index].top = 0
+      }
+    }else{
+      if(this.GETChannelListSecondRecognition.output.value.secondRecognitions[index].top<this.GETChannelListSecondRecognition.output.value.secondRecognitions[index].bottom-5){
+        setTimeout(()=>{
+          this.GETChannelListSecondRecognition.output.value.secondRecognitions[index].top++
+        },10)
+      }else{
+        this.GETChannelListSecondRecognition.output.value.secondRecognitions[index].top = this.GETChannelListSecondRecognition.output.value.secondRecognitions[index].bottom-5
+      }
+    }
+  },
+
+  //下划线拖拽事件
+  draggableBottom(e,index){
+    console.log(e.offsetY)
+    if(e.offsetY<0){
+      if(this.GETChannelListSecondRecognition.output.value.secondRecognitions[index].bottom>this.GETChannelListSecondRecognition.output.value.secondRecognitions[index].top+5){
+        setTimeout(()=>{
+          this.GETChannelListSecondRecognition.output.value.secondRecognitions[index].bottom--
+        },10)
+      }else{
+        this.GETChannelListSecondRecognition.output.value.secondRecognitions[index].bottom = this.GETChannelListSecondRecognition.output.value.secondRecognitions[index].top+5
+      }
+    }else{
+      if(this.GETChannelListSecondRecognition.output.value.secondRecognitions[index].bottom<100){
+        setTimeout(()=>{
+          this.GETChannelListSecondRecognition.output.value.secondRecognitions[index].bottom++
+        },10)
+      }else{
+        this.GETChannelListSecondRecognition.output.value.secondRecognitions[index].bottom = 100
+      }
+    }
+  },
+
+查看兼容性   https://www.caniuse.com/#search=drag
+
+ <p class="searchWrap">
+        <!-- 输入车牌 -->
+        <base-filter-box label="车牌" style="margin-left:10px;">
+          <base-plate-input 
+                    :hideUnknown='true'
+                    :value.sync="GETAreaOrderCar.input.value.plateNumber" 
+                    :color.sync="GETAreaOrderCar.input.value.plateColor"
+                    @keyup.enter.native="clickSearch">
+          </base-plate-input>
+        </base-filter-box>
+
+        <!-- 抓拍时间区间 -->
+        <base-filter-box label="抓拍时间区间" style="width:485px;">
+           <el-date-picker
+                    style="height:30px;width:360px;"
+                    :default-time="['00:00:00', '23:59:59']"
+                    v-model="GETAreaOrderCar.input.inTime"
+                    type="datetimerange"
+                    :clearable=true
+                    range-separator="至"
+                    size="mini"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期">
+          </el-date-picker>
+        </base-filter-box>
+
+        <!-- 道 -->
+        <base-filter-box label="道" style="">
+          <el-input 
+                @keyup.enter.native="clickSearch"
+                v-model="GETAreaOrderCar.input.value.channelName">
+          </el-input>
+        </base-filter-box>
+
+        <!-- 是否关联到订单 -->
+        <base-filter-box label="是否关联到订单" style="">
+          <el-input 
+                @keyup.enter.native="clickSearch"
+                v-model="GETAreaOrderCar.input.value.isRelation">
+          </el-input>
+        </base-filter-box>
+        <!-- 查询、重置按钮 -->
+        <el-button size="mini" type="primary" icon="el-icon-search" @click="clickSearchOrderCar('item')" >查询</el-button>
+      </p>
+
+.searchWrap{
+        height: 50px;
+        display: flex;
+        justify-content: flex-start;
+        align-content: center;
+        .filter-box{
+          display: inline-block;
+        }
+      }
+
+GETAreaOrderCar:{
+    input:{
+      value:{
+        "plateNumber":undefined,
+        "st":undefined,
+        "et":undefined,
+        "channelName":undefined,
+        "isRelation":undefined,
+        "parkingId":undefined
+      },
+      inTime:{
+        get(){
+          return [new Date(this.parent.value.st),new Date(this.parent.value.et)]
+        },
+        set(value){
+
+          if(value===null){
+            this.parent.value.st = undefined
+            this.parent.value.et = undefined
+            return
+          }
+          this.parent.value.st = value[0].format('yyyy/MM/dd hh:mm:ss')
+          this.parent.value.et = value[1].format('yyyy/MM/dd hh:mm:ss')
+        }
+      },
+    },
+    output:{
+      value:{
+
+      }
+    }
+  }
+
+2020.7.6
+周一：w12b的内容，目标车辆-抓拍流水优化，新增流水抓拍页面  
+
+周二：完善车辆抓拍流水页面，w13内容：pc告警弹窗设置以及列表，车主H5微信身份入场界面，电子发票pc页面弄了一点
+
+周三：w13告警pc界面以及H5界面，还有H5实时情况界面。
+
+周四：物业H5无人值守页面，pc告警页面需求探讨以及页面改动
+
+周五：定义获取告警列表接口，联调
+
+实时情况（有难度）涉及ws   根据activeId设置告警限制  首次进入获取列表！！(多个循环不必要)来判断，然后再ws链接，从有到无呢？
+
+GET请求会改变对象内数组为对象，POST不会发生
+
+限制小数点后两位：   val.toString().replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')
+限制只能输入整数：   val.toString().replace(/[^1-9]/g,'')
+let x = String(val/3600).indexOf(".")+1;  //得到小数点的位置
+let y = String(val/3600).length - x;      //小数点的位数
+
+Object.keys(obj)
+参数：要返回其枚举自身属性的对象
+返回值：一个表示给定对象的所有可枚举属性的字符串数组
+
+arr.every()判断数组内每个元素是否符合条件
+
+js:节流
+var btn = document.getElementById('btn')
+    function throttle () {
+        let timer 
+        clearTimeout(timer);
+        timer = setTimeout (function () {
+          console.log("按钮被点击了");
+    }, 3000);
+}   
+btn.onclick=function(){
+      throttle();
+ }
+    
+
+2020.7.12
+周日：加班联调告警功能--特定车组入场列表，以及物业告警小红点
+
+周一：联调pc告警小红点，物业H5告警
+
+周二：完善PC以及H5告警功能，已提测一版
+
+周三：物业H5无人值守,pc以及H5告警bug修改并提测
+
+周四：修改禅道bug
+
+周五：继续修改禅道bug，基本修完（残留一些疑难杂症，后续工作中慢慢修复），已提测
+1：本周工作内容
+   周日：加班联调告警功能--特定车组入场列表，以及物业告警小红点
+   周一：联调pc告警小红点，物业H5告警
+   周二：完善PC以及H5告警功能，已提测一版
+   周三：物业H5无人值守,pc以及H5告警bug修改并提测
+   周四：修改禅道bug
+   周五：继续修改禅道bug，基本修完（残留一些疑难杂症，后续工作中慢慢修复），已提测
+2：培训计划执行情况
+     培训计划有序进行，情况正常
+3：问题与建议
+     暂无
+4：成就感
+     上班第十周，这周路通云停w13周期告警部分内容提测，修改相关bug，提升了自己做事考虑事情的广度
+
+2020.7.20
+周一：w13--商家H5进入权限机制，优化告警细节，修改bug
+
+周二：大面积修改物业H5的样式兼容问题，以及H5残留的样式bug，把H5端一个常用的分页功能封装成了一个组件便于组件复用
+
+周三：修改物业H5的分页bug，做了一些离线计费和月租车灵活充值的内容
+
+周四：优化告警代码，完善离线计费和月租车灵活充值的内容
+
+周五：继续完善离线计费页面和月租车灵活充值页面，离线计费已经联调，完成80%
+1：本周工作内容
+     周一：w13--商家H5进入权限机制，优化告警细节，修改bug
+     周二：大面积修改物业H5的样式兼容问题，以及H5残留的样式bug，把H5端一个常用的分页功能封装成了一个组件便于组件复用
+     周三：修改物业H5的分页bug，做了一些离线计费和月租车灵活充值的内容
+     周四：优化告警代码，完善离线计费和月租车灵活充值的内容
+     周五：继续完善离线计费页面和月租车灵活充值页面，离线计费已经联调，完成80%
+2：培训计划执行情况
+     培训计划有序进行，情况正常
+3：问题与建议
+     暂无
+4：成就感
+     上班第十一周，这周路通云停w13周期告警部分内容上线，开发阶段完成的比较顺利，
+     上线时出了一些预期之外的状况，有自己的一些原因，反思总结，之后的开发过程中避免这些问题
+
+文本溢出
+overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+2020.7.27
+周一：联调离线计费剩下的部分，已提测，搭建车主端电子发票页面，已完成60%
+周二：完成车主端电子发票所有页面，修改pc端的一些开启确认的小问题
+周三：讨论电子发票页面，针对需求修改页面，讨论并确定统一pc页面的提示样式
+周四：编写电子发票前端页面部分功能逻辑
+周五：昨天更改电子发票开票页面业务需求，今天根据需求编写页面逻辑，联调开发票流程
+1：本周工作内容
+    周一：联调离线计费剩下的部分，已提测，搭建车主端电子发票页面，已完成60%
+    周二：完成车主端电子发票所有页面，修改pc端的一些开启确认的小问题
+    周三：讨论电子发票页面，针对需求修改页面，讨论并确定统一pc页面的提示样式
+    周四：编写电子发票前端页面部分功能逻辑
+    周五：昨天更改电子发票开票页面业务需求，今天根据需求编写页面逻辑，联调开发票流程
+2：培训计划执行情况
+     培训计划有序进行，情况正常
+3：问题与建议
+     暂无
+4：成就感
+     上班第十二周，这周参与路通云停w13b、w13c部分内容开发，开发过程比较顺利，继续努力
+
+   var oEvent = e || event;
+    oEvent.stopPropagation();
+
+2020.8.3   http://172.18.121.16:8680/fx/doc/-/issues/164
+周一：修改禅道bug以及电子发票的提测反馈的问题
+周二：修改禅道bug---pc端物业查询机制
+周三：修复电子发票页面部分兼容问题以及pc端物业查询机制        
+周四：完善页面物业查询机制，解决经销商角色物业部分物业下拉没有物业的问题
+周五：着手14周期的内容，设备离线告警，月租车灵活充值
+1：本周工作内容
+   周一：修改禅道bug以及电子发票的提测反馈的问题
+   周二：修改禅道bug---pc端物业查询机制
+   周三：修复电子发票页面部分兼容问题以及pc端物业查询机制        
+   周四：完善页面物业查询机制，解决经销商角色物业部分物业下拉没有物业的问题
+   周五：着手14周期的内容，设备离线告警，月租车灵活充值
+2：培训计划执行情况
+     培训计划有序进行，情况正常
+3：问题与建议
+     暂无
+4：成就感
+     上班第十三周，这周参与路通云停w13c部分电子发票开发上线，相比之前的上线少了很多问题。
+
+笔记：13by是暂存月租车灵活充值和离线的   13cz是最新的   template是暂存物业查询机制，里面没有月租车灵活充值    告警，设置告警记得加入参，
+          全部都传
+          如果需要页面一进来就是某一列已经进行了排列的样子，多个列表就用v-show，详情见pc页面二次识别记录，两个列表的渲染方式
+
+.chooseArea /deep/{
+    .filter-box-cont{
+      width: 240px !important;
+      .filter-box-el-parent{
+        width: 180px !important;
+      }
+   }
+}
+
+
+当出现时间日期控件无法选择的问题时，get的时候需要一个this.parent.value.et&&  “&&”连结符号并且前面加上
+endTime:{
+        get(){
+          return this.parent.value.et&&new Date(this.parent.value.et)
+        },
+        set(value){
+          if(value===null){
+            this.parent.value.et = undefined
+            return
+          }
+          this.parent.value.et = value.format('yyyy/MM/dd 23:59:59')
+        }
+},
+
+字符串转数组
+var str = "abc,abcd,aaa";
+arr = str.split(",");// 在每个逗号(,)处进行分解。
+console.log(arr)//["abc", "abcd", "aaa"]
+
+数组转字符串
+var a, b;
+a = [0,1,2,3,4,0];
+b = a.join(",");
+console.log(b)//0,1,2,3,4,0
+
+template是最新的包含物业查询机制，已提测。    w13cz，最新但是不包含物业查询机制      w14z是template合并时租车的，可以说最新最全的
+
+暂存一个trigger问题（失焦变红） ，月租车新增族内车跳过表单验证
+
+笔记：定时器
+this.timers = null
+    this.timers1 = null
+    clearTimeout(this.timers)
+    clearTimeout(this.timers1)
+    this.getQR = async()=>{
+      let isOk = await this.methods('getQrcodeUrl')
+      if(!isOk)return
+      clearTimeout(this.timers1)
+      this.timeNumber.input.timeData=window.config.timeData
+      this.getTimeData = async()=>{
+        await this.methods('getTimeData')
+        clearTimeout(this.timers1)
+        this.timers1 = setTimeout(this.getTimeData,1000)
+      }
+      this.getTimeData()
+      this.timers = setTimeout(this.getQR,window.config.timeData*1000)
+}
+this.getQR()
+
+
+14y是没有物业查询机制而且月租车的相关bug也没有改的 
+
+笔记：当使用select的时候，如果下方循环的rows里面没有当前选择的值，你可以手动加一个option在前面，其值就是当前选中或者说localstorage里面存的
+详见pc页面员工管理处的商户查询
+<el-select placeholder="请选择" v-model="GETMchReport.output.currentMchID" popper-class="parking-list-popper">
+      <div class="pa search-parking">
+                <el-input clearable v-model.trim="GETMchReport.input.value.mchName" @input="inputmchName" ref="filterInput" size="small" placeholder="商户名称"><i slot="prefix" class="el-input__icon el-icon-search"></i></el-input>
+                <div class="hide">{{GETMchReport.output.currentMchName}}</div>
+      </div>
+              <el-option :value="window.localStorage.mchId" :label="window.localStorage.mchName" v-if="window.localStorage.mchId===window.localStorage.currentMchID"></el-option>  
+              <el-option :value="window.localStorage.currentMchID" :label="window.localStorage.currentMchName" v-if="window.localStorage.mchId!=window.localStorage.currentMchID&&!GETMchReport.output.value.rows.find(i => i.mchId === GETMchReport.output.currentMchID)"></el-option>  
+              <el-option
+                      v-for="item in GETMchReport.output.value.rows"
+                      v-show="GETMchReport.output.value.rows.length"
+                      :key="item.mchId" :value="item.mchId" :label="item.mchName"/>
+
+              <div class="tc" style="margin-top:10px">
+              <el-button size="small" v-if="GETMchReport.output.value.rows.length < GETMchReport.output.value.total" @click="$refs.filterInput.focus()">更多数据请筛选</el-button>
+        </div>
+</el-select>
+
+http://172.18.121.16:8680/fx/doc/-/boards/27?scope=all&utf8=%E2%9C%93&state=opened&milestone_title=W2020-14
+
+笔记：求一个月的第一天到最后一天
+定义month = ‘2020/08’
+let nextMonth = parseInt(month.split('/')[1])  =======>这里输出的是8
+let inTimeEt = new Date(month.split('/')[0], nextMonth, 0).format('yyyy/MM/dd')   =======>这里输出的是2020/08/31
+month + '/01 00:00:00',  ======>2020/08/01 00:00:00
+inTimeEt + ' 23:59:59',    ======>2020/08/31 23:59:59
+
+笔记：判断一个数组中是否包含另一个数组
+isContained =(a, b)=>{
+    if(!(a instanceof Array) || !(b instanceof Array)) return false;
+    if(a.length < b.length) return false;
+    var aStr = a.toString();
+    for(var i = 0, len = b.length; i < len; i++){
+      if(aStr.indexOf(b[i]) == -1) return false;
+    }
+    return true;
+  }
+
+改到的quickSetting   paySetting  proxy  device property
+paySetting
+
+14y是以前没有物业查询机制的不够新   14p是最新的没有物业查询机制  14z是最新的但是包含有物业查询机制  14zyp是拉了最新的代码，并且合了查询机制的
+回退笔记：因为涉及到大规模的页面跳转，来不及改，所以选择版本回退
+
+跳转问题，涉及物业影响处：layout里面  商户管理(已解决)  设备总会(已解决)  车组规则（严重(已解决)）   交班交账(已解决)   （商家优惠管理(已解决)  ）  
+                涉及停车场影响处（停车场跳停车场，停车场跳物业）：停车场列表(已解决)   停车场设置(已解决)  停车订单(无)  月租车列表(无)  在场车辆(无)  其他车组(无)   告警(已解决)    
+              （涉及物业无影响的    日报  月报）
+              （跳转全有问题，会以后面更新的local为准，因为没有更新物业更新停车场这个操作）
+
+
+1，商户第二个页面的isEnduser无处去拿   车组规则跳转也是第二个页面拿不到
+14z  目前的情况是基本可以实现正常跳转   但是常在于  首次进入页面  currentEndUserID还没有，
+       车组规则所以会跳到undefined物业(这个已经改成至少不会出现undefined，但是跳去列表第一个，还是不对的)  以及搜索然后刷新之后没有了mchId   还有告警查看车组信息不会改到local中的parkingName，id会改，
+       但是还是有问题。新建第二个分支看一下  尝试过后发现以前的方法根本不行
+
+
+腾讯云  
+您好！主账号（账号ID：176336109）为您创建一个子用户，您可以使用子用户密码通过链接（https://cloud.tencent.com/login/subAccount/176336109）登录腾讯云控制台管理资源。
+子用户密码信息如下，请妥善保管。
+用户名：zhengyp
+密码：;}V$n8k4v/bA#m-lLytAn4/\{1E8]Jtwzyp
+
+https://gallery.echartsjs.com/editor.html?c=x4SFfqL-2R   一个比较接近的echarts
+
+https://gallery.echartsjs.com/editor.html?c=x4SFfqL-2R
+
+const colorList = ["#9E87FF", '#73DDFF', '#fe9a8b', '#F56948', '#9E87FF']
+option = {
+    backgroundColor: '#fff',
+    title: {
+        text: '车场指标',
+        textStyle: {
+            fontSize: 12,
+            fontWeight: 400
+        },
+        left: 'left',
+        top: '5%'
+    },
+    legend: {
+        icon: 'circle',
+        top: '5%',
+        right: '5%',
+        itemWidth: 6,
+        itemGap: 20,
+        textStyle: {
+            color: '#556677'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            label: {
+                show: true,
+                backgroundColor: '#fff',
+                color: '#556677',
+                borderColor: 'rgba(0,0,0,0)',
+                shadowColor: 'rgba(0,0,0,0)',
+                shadowOffsetY: 0
+            },
+            lineStyle: {
+                width: 0
+            }
+        },
+        backgroundColor: '#fff',
+        textStyle: {
+            color: '#5c6c7c'
+        },
+        padding: [10, 10],
+        extraCssText: 'box-shadow: 1px 0 2px 0 rgba(163,163,163,0.5)'
+    },
+    grid: {
+        top: '15%'
+    },
+    xAxis: [{
+        type: 'category',
+        name: '(月)',
+        nameTextStyle: {
+            color: 'black',
+            fontSize: 16,
+            padding: [0, 0, 10, 0]
+        },
+        data: ['1', '2', '3', '4', '5', '6', '7'],
+        axisLine: {
+            lineStyle: {
+                color: '#DCE2E8'
+            }
+        },
+        axisTick: {
+            show: false
+        },
+        axisLabel: {
+            interval: 0,
+            textStyle: {
+                color: '#556677'
+            },
+            // 默认x轴字体大小
+            fontSize: 12,
+            // margin:文字到x轴的距离
+            margin: 15
+        },
+        axisPointer: {
+            label: {
+                // padding: [11, 5, 7],
+                padding: [0, 0, 10, 0],
+                /*
+    除了padding[0]建议必须是0之外，其他三项可随意设置
+    
+    和CSSpadding相同，[上，右，下，左]
+    
+    如果需要下边线超出文字，设左右padding即可，注：左右padding最好相同
+    
+    padding[2]的10:
+    
+    10 = 文字距下边线的距离 + 下边线的宽度
+                
+    如：UI图中文字距下边线距离为7 下边线宽度为2
+    
+    则padding: [0, 0, 9, 0]
+                
+                */
+                // 这里的margin和axisLabel的margin要一致!
+                margin: 15,
+                // 移入时的字体大小
+                fontSize: 12,
+                backgroundColor: {
+                    type: 'linear',
+                    x: 0,
+                    y: 0,
+                    x2: 0,
+                    y2: 1,
+                    colorStops: [{
+                        offset: 0,
+                        color: '#fff' // 0% 处的颜色
+                    }, {
+                        // offset: 0.9,
+                        offset: 0.86,
+                        /*
+0.86 = （文字 + 文字距下边线的距离）/（文字 + 文字距下边线的距离 + 下边线的宽度）
+                        
+                        */
+                        color: '#fff' // 0% 处的颜色
+                    }, {
+                        offset: 0.86,
+                        color: '#33c0cd' // 0% 处的颜色
+                    }, {
+                        offset: 1,
+                        color: '#33c0cd' // 100% 处的颜色
+                    }],
+                    global: false // 缺省为 false
+                }
+            }
+        },
+        boundaryGap: true
+    }],
+    yAxis: [{
+        type: 'value',
+        name: '收入',
+        nameTextStyle: {
+            color: 'black',
+            fontSize: 16,
+            padding: [0, 0, 10, 0]
+        },
+        axisTick: {
+            show: false
+        },
+        axisLine: {
+            show: true,
+            lineStyle: {
+                color: '#DCE2E8'
+            }
+        },
+        axisLabel: {
+            textStyle: {
+                color: '#556677'
+            }
+        },
+        splitLine: {
+            show: false
+        }
+    }, {
+        type: 'value',
+        name: '车流',
+        nameTextStyle: {
+            color: 'black',
+            fontSize: 16,
+            padding: [0, 0, 10, 0]
+        },
+        position: 'right',
+        axisTick: {
+            show: false
+        },
+        axisLabel: {
+            textStyle: {
+                color: '#556677'
+            },
+            formatter: '{value}'
+        },
+        axisLine: {
+            show: true,
+            lineStyle: {
+                color: '#DCE2E8'
+            }
+        },
+        splitLine: {
+            show: false
+        }
+    }],
+    series: [{
+            name: '同比收入',
+            type: 'line',
+            data: [380000, 370000, 350000, 320000, 350000, 390000, 370000],
+            symbolSize: 1,
+            symbol: 'circle',
+            smooth: true,
+            yAxisIndex: 0,
+            showSymbol: false,
+            lineStyle: {
+                width: 5,
+                color:'orange',
+                // color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                //         offset: 0,
+                //         color: '#9effff'
+                //     },
+                //     {
+                //         offset: 1,
+                //         color: '#9E87FF'
+                //     }
+                // ]),
+                // shadowColor: 'rgba(158,135,255, 0.3)',
+                // shadowBlur: 10,
+                // shadowOffsetY: 20
+            },
+            itemStyle: {
+                normal: {
+                    color: colorList[0],
+                    borderColor: colorList[0]
+                }
+            }
+        }, {
+            name: '同比车流',
+            type: 'line',
+            data: [50000, 32000, 47000, 44000, 45000, 36000, 39000],
+            symbolSize: 1,
+            yAxisIndex: 1,
+            symbol: 'circle',
+            smooth: true,
+            showSymbol: false,
+            lineStyle: {
+                width: 5,
+                color:"black",
+                // color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                //         offset: 0,
+                //         color: '#fe9a'
+                //     },
+                //     {
+                //         offset: 1,
+                //         color: '#fe9a8b'
+                //     }
+                // ]),
+                // shadowColor: 'rgba(254,154,139, 0.3)',
+                // shadowBlur: 10,
+                // shadowOffsetY: 20
+            },
+            itemStyle: {
+                normal: {
+                    color: colorList[2],
+                    borderColor: colorList[2]
+                }
+            }
+        }
+    ]
+};
+
+苹果tabbar上下间距  车场下拉样式    26rpx ==== 14px   22rpx=== 12px   55rpx === 30px  19rpx  === 10px
+
+//获取盒子的内容高度，内容高度也可用用box.clientHeight获取，内容高度不包括边框和外边距和滚动条
+var box = document.getElementById("box")
+var contentHeight = window.getComputedStyle(box).height //输出 '60px'
+
+输出图片图片大小有问题  闪烁
+
+window.eval('("' + (iconData).replace('&#x', '\\u').replace(';', '') + '")')   组件传入字符串并处理
+
+小程序图片地址  直接static  不需要一层一层去定位到文件夹
+
+四字120  五字140  六字170 
+
+p{
+  width:100px;
+  word-break:keep-all;
+  white-space:nowrap;     
+} 文字同行显示
+
+
+当前目标：整理在用组件中常用以及可能会公用的组件，进行兼容/优化/,进行可个性化封装
+长期目标：各个项目需要用到已有/类似组件直接拿来复用，提高开发效率,日常开发中不断添加新的可用的组件
+
+封装一些基础组件，替换图标，重构页面，替换组件
+
+
+移动端  let element = e.targetTouches[0]  这个可以获取拖拽的相关属性
+
+笔记：
+input的v-model中不能用字典查询语句或js语句
+
+clientY是距离界面顶部距离
+offsetY是距离元素边界的距离，就是外层盒子
+
+**********兼容问题*******************
+iphone 10.3以下系统  overflow：scroll有问题   height：100%  对样式也有影响
+
+
+
+计算属性  避免一层三目不能满足的问题（又不想写多层）
+:iconData="primaryEquipment(item)"
+
+primaryEquipment () {
+    return (data) => {
+      console.log(data.primaryEquipment)
+      if(data.primaryEquipment==='secondary'){
+        return '&#xe707;'
+      }
+      if(data.primaryEquipment==='primary'){
+        if(data.devType==='Fx1'){
+          return '&#xe705;'
+        }
+        if(data.devType==='Fx2'){
+          return '&#xe706;'
+        }
+      }
+      return '&#xe706;'
+    }
+  },
+
+
+<i v-if="iconData" class="icon iconfont" :class="{'dealer-c':isdealer}" :style="{lineHeight:lineHeight?lineHeight/75+'rem':'',color:isOffLine==='y'?'rgba(0,0,0,0.45)':''}">{{window.eval('("' + (iconData).replace('&#x', '\\u').replace(';', '') + '")')}}</i>
+四个字  130rpx
+
+文本溢出
+overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+计算属性设置背景图
+:style="{backgroundImage:`url(${bgUrl})`}"
+
+小程序页面跳转带参数
+uni.navigateTo({
+      url: name+'?'+`object=${JSON.stringify(item)}`,
+})
+
+{
+      "path": "pages/workOrder/children/orderList/index",
+      "style": {
+        "navigationBarTitleText": "工单列表"
+      }
+    },
+    {
+      "path": "pages/workOrder/children/orderDetails/index",
+      "style": {
+        "navigationBarTitleText": "工单详情"
+      }
+    },
+
+https://www.cnblogs.com/nicksheng/p/6201711.html   项目添加git子模块
+
+//获取键值  键名
+let counts = [{a:1},{b:2},{c:3},{d:4},{e:5}]
+this.buttons.forEach((item,index)=>{
+	for(var key in counts[index]){
+		item.titleCount = counts[index][key]
+	}
+	// item.titleCount = Object.keys(counts[index]) 
+});
+
+uni图片预览
+ <img :src="imgList.input.urls[imgIndexC]" alt="加载失败" @click.stop="clickOpen">
+
+clickOpen() {
+    this.methods('showPreview');
+},
+
+showPreview(){
+   uni.previewImage({
+      current:this.imgIndexC,
+      urls:this.imgList.input.urls
+   })
+}
+
+// 真实用于组件内的图片列表
+  imgList: {
+		input:{
+			urls:[
+				'http://www.263th.com/img/50.jpg',
+				'http://imagecn.gasgoo.com/moblogo/News/UEditor/image/cb56892c4f1541239b01b54dbae82be020190716/6369889080500747812748224.jpg',
+				'http://img.hx2cars.com/upload/newimg2/M00/56/47/Clo8xF8ZQRWAMIhqAAJ-T3zdnp4549_small_400_300.jpg',
+				'https://pic3.zhimg.com/80/23cec977f999dcd8a78e70bafec36aca_720w.jpg'
+			]
+		}
+		
+  },
+
+// 计算index
+  imgIndexC() {
+    let r = 0;
+    return r;
+  }
+
+testAdmin 1  superAdmin 1
+
+危化品
+appid ：wx7b830ba78105c15a
+secreskey：a34cb2a7a2a4c62fccd929af93d39a04
+
+//加个loading
+uni.hideNavigationBarLoading()
+uni.hideHomeButton()
+uni.showLoading({
+     title: '登录中'
+})
+//成功之后隐藏
+uni.hideLoading()
+
+uni地图
+http://www.hcoder.net/tutorials/info/id/1349   api解释文档
+
+uniapp  异步转同步
+await	new Promise(async r => {   在需要reject的地方  r()	｝）
+例如
+event：let isOk = await this.methods('submit')   //手动登陆  会进行绑定  这里的isOk始终是false  所以用promise
+methods：
+	async submit() {
+		let isOk = false
+	  await	new Promise(async r => {		
+			uni.getProvider({
+				service: 'oauth',
+				success(res) {
+					if (~res.provider.indexOf('weixin')) {
+						uni.login({
+							provider: 'weixin',
+							success(res2) {
+								// console.log('登录信息',res2)   code  登录结果
+								uni.getUserInfo({
+									provider: 'weixin',
+									success(info){//这里请求接口
+										// console.log('这是用户信息',info)
+										uni.setStorageSync('userImg',info.userInfo.avatarUrl)
+										// _this.http({
+										// 	cmd:'/common/bindWx',
+										// 	input:{code:res2.code,channelType:'WXApplet'},
+										// 	success(){
+										// 		console.log('绑定成功')
+										// 	}
+										// })
+										inputSend = JSON.parse(inputSend)
+										inputSend.code = res2.code
+										_this.http({
+											cmd:'common/login',
+											input:inputSend,
+											success(res){
+												if(res.code==='0'){
+													isOk = true
+													console.log(5)
+													console.log(isOk)
+													//隐藏loading
+													uni.hideLoading()
+								
+													uni.setStorageSync('sessionId',res.data.sessionId) // 保存sessionid
+													Object.keys(res.data).forEach(function(key) {
+														if (res.data[key] !== null) {
+															// console.log(res.data[key] )
+															//存登录返回的信息
+															uni.setStorageSync(key,res.data[key])
+														}
+													})
+													
+													r()
+													// await this.http({
+													// 	//如果需要额外请求接口可以写在这
+													// })
+												}
+											},
+											error(res){
+												uni.showToast({
+													icon: "none",
+													title: res.msg,
+													duration: 3000,
+													position: 'top'
+												})
+											}
+										})
+									},
+									fail: () => {
+										uni.showToast({title:"微信登录授权失败",icon:"none"});
+									}
+								})
+
+							},
+							fail: () => {
+								uni.showToast({title:"微信登录授权失败",icon:"none"});
+							}
+						})
+
+					}else{
+						uni.showToast({title: '请先安装微信或升级版本',icon:"none"});
+					}
+				}
+			});
+		})
+		console.log(4)
+		console.log(isOk)
+		return isOk
+	}
+
+
+	// window.utils.dict.get('CarFeeType', {dictValue: item.carType}).dictName
+
+待解决1，2  
+
+上拉加载下拉刷新
+http://www.mescroll.com/uni.html
+
+tab透明度45
+
+19D9D7
+
+小程序提示
+ uni.showToast({
+      icon: "none",
+      duration: 1000,
+      position: 'top',
+      title: "还没加",
+ })
+
+//哨兵接口
+http://172.18.2.23:7001/web/#/23?page_id=2187
+
+Vue.filter('formatSolution', function (val) {
+  let solution = ""
+  switch (val) {
+    case '0':
+      solution = '外部原因'
+      break
+    case '1':
+      solution = '已解决'
+      break
+    case '2':
+      solution = '延期处理'
+      break
+    default:
+      solution = '--'
+  }
+  return solution
+})
+使用
+ticketDetails.output.value.resolveStatus | formatSolution
+
+小程序  placeholder样式   placeholder-class
+uniapp placeholder样式  placeholder-style="color:rgba(0,0,0,0.2)"
+
+强制换行   word-break: break-all;
+不还行      word-break:keep-all;
+  
+https://www.cnblogs.com/superclound/p/12202576.html     Object.prototype.hasOwnProperty.call(foo, "bar")。  js原型方法用 call 改变指向调用：
+
+http://linwei.xyz/ol3-primer/ch07/07-03-03.html   openlayers中文
+http://linwei.xyz/ol3-primer/ch07/07-03-03.html
+
+https://www.jianshu.com/p/ffb7f91e53ff   一个vue全家桶+Echarts+百度地图，搭建数据可视化系统
+
+开发服上存在并发现的问题（连刚哥本地的时候没问题）
+1，各个身份上方获取的各个状态的工单数量和下方列表数据不对应   涉及接口：/TicketManage/SearchTicketCount    /TicketManage/SearchTicketV2
+2，工单解决之后激活再解决，图片保留了每一次上传的
+3，编辑工单保存之后，催单次数翻倍
+
+其他工单中心主流程自测ok
+
+1，开发服故障中心列表模糊搜索无效  /FaultCenter/QueryFaultListH5
+2，开发服故障设备列表模糊查询无效   /Reporting/QueryFaultListH5
+
+小程序  cover-view只支持基本的定位、布局、文本样式。不支持设置单边的border、background-image、shadow、overflow: visible等。
+
+https://www.jianshu.com/p/7344c4066e82  uniapp导航栏配置
+
+小程序发布图片不显示 使用import加载图片import bgUrl from '@/static/img/order.jpg';
+图片压缩在线https://www.apowersoft.cn/compress-image-online
+
+https://ask.dcloud.net.cn/article/36183   手动添加导航样式
+https://ask.dcloud.net.cn/article/34921
+https://ask.dcloud.net.cn/article/13531
+上面这三个都是垃圾，结果想自定义导航的文字，是通过计算实现的，计算状态栏高度和导航栏高度，定位上去的 （详见哨兵移动端scroll-tabs组件内部写法）
+下面这个方法可以获取状态栏高度和导航栏高度以及机型
+uni.getSystemInfo({
+      success: (e) => {
+        let statusBar = 0   // statusBar ---------- 状态栏高度
+        let navBar = 0   // statusBar ---------- 状态栏高度
+        let customBar = 0   // customBar -------- 状态栏高度 + 导航栏高度
+        
+        
+        // #ifdef MP
+        statusBar = e.statusBarHeight
+        customBar = e.statusBarHeight + 45
+        if (e.platform === 'android') {
+          customBar = e.statusBarHeight + 50
+        }
+        // #endif
+        
+        
+        // #ifdef MP-WEIXIN
+        statusBar = e.statusBarHeight
+        // @ts-ignore
+        const custom = wx.getMenuButtonBoundingClientRect()
+        customBar = custom.bottom + custom.top - e.statusBarHeight
+        // #endif
+  
+  
+        // #ifdef MP-ALIPAY
+        statusBar = e.statusBarHeight
+        customBar = e.statusBarHeight + e.titleBarHeight
+        // #endif
+  
+  
+        // #ifdef APP-PLUS
+        console.log('app-plus', e)
+        statusBar = e.statusBarHeight
+        customBar = e.statusBarHeight + 45
+        // #endif
+  
+  
+        // #ifdef H5
+        statusBar = 0
+        customBar = e.statusBarHeight + 45
+        // #endif
+        
+        navBar = customBar-statusBar
+        this.statusBar = statusBar
+        this.customBar = customBar
+        this.navBar = navBar
+        
+        if ((e.model.search('iPhone X') !== -1 || e.model.search('iPhone 11') !== -1 || e.model.search('iPhone 12'))!=-1) {
+          this.isIphoneAdaptation = true
+          if(this.isIphoneAdaptation){
+            this.titleHeight = 170
+          }
+        }        
+      }
+    })
+
+17素材  https://www.17sucai.com/category/2/47/65
+
+vue地图  https://elemefe.github.io/vue-amap
+vue使用高德地图  https://www.cnblogs.com/wgl0126/p/11770437.html
+高德地图markers  https://lbs.amap.com/api/amap-ui/demos/amap-ui-markerlist/index
+
+frp
+https://gofrp.org/docs/ 国人最牛逼的项目了这个frp，非常好用，开发神器
+
+故障设备列表接口
+
+退出登录解绑失败
+
+地图背景   url: 'https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}'
+import { Map, View } from 'ol'
+import TileLayer from 'ol/layer/Tile'
+import XYZ from 'ol/source/XYZ'
+ source: new XYZ({
+          url: 'https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}'
+        })
+ import Map from 'ol/Map'
+  import View from 'ol/View'
+  import TileLayer from 'ol/layer/Tile'
+  import GeoJSON from 'ol/format/geoJson'
+  import Feature from 'ol/Feature'
+  import vectorLayer from 'ol/layer/Vector'
+  import SourceVector from 'ol/source/Vector'
+  import {Heatmap as HeatmapLayer} from 'ol/layer';
+  import {Style,Stroke} from 'ol/style'
+  import OSM from 'ol/source/OSM'
+  import {fromLonLat} from 'ol/proj.js'
+  import api from '../static/js/api'
+
+place灰色   催单不跳出
+
+编辑工单报错userRealName  先搁置
+
+uniapp设置input textarea等的placeholder样式的时候失效  解决方案
+placeholder-class="test"
+placeholder-style="color:red;"
+
+计算快捷时间
+1天：new Date(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 1, 0, 0, 0).getTime() - 24 * 60 * 60 * 1000).format('yyyy-MM-dd hh:mm:ss')
+3天：new Date(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 3, 0, 0, 0).getTime() - 24 * 60 * 60 * 1000).format('yyyy-MM-dd hh:mm:ss')
+
+uniapp https://github.com/xiaowang1314/uniapp-plugin-collections   小程序插件（第三方自定义封装）
