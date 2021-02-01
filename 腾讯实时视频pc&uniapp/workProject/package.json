@@ -1,0 +1,30 @@
+{
+  "name": "signalway-uniapp-boilerplate",
+  "version": "1.0.0",
+  "description": "信路威uniapp样板项目",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:mp-weixin": "cd ./mobileframework && npm run build:mp-weixin && node core/compiler/moveDist.js",
+    "dev:mp-weixin": "cd ./mobileframework && npm run dev:mp-weixin",
+    "dev:h5": "cd ./mobileframework && npm run dev:h5",
+    "api-update": "node ./src/interceptor/http/自动获取api.js",
+    "lint": "eslint --ext .js,.vue  src",
+    "lint:fix": "eslint --ext .js,.vue  --fix src"
+  },
+  "devDependencies": {
+    "@types/uni-app": "^1.4.3",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.12.1",
+    "eslint-plugin-html": "^6.1.0",
+    "eslint-plugin-vue": "^7.1.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "trtc-js-sdk": "^4.8.4"
+  }
+}

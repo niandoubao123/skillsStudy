@@ -1,0 +1,4 @@
+[submodule "mobileframework"]
+	path = mobileframework
+	url = http://gitlab.smartgalaxy.net:8680/FE/technology/mobileframework.git
+	branch = delete-src

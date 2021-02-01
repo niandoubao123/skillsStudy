@@ -1,0 +1,3 @@
+src/libs/*
+src/static/*
+src/interceptor/**/apis.js
